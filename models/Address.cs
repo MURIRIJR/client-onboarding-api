@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace ClientOnboardingApi.Models;
 
 public class Address
@@ -13,5 +15,6 @@ public class Address
 
     public int PersonalId { get; set; }
 
+    [JsonIgnore]
     public Personal? Personal { get; set; }
 }
