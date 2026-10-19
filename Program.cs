@@ -1,4 +1,7 @@
 using ClientOnboardingApi.Data;
+using ClientOnboardingApi.Interfaces;
+using ClientOnboardingApi.Repositories;
+using ClientOnboardingApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,12 +16,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IPersonalRepository, PersonalRepository>();
+builder.Services.AddScoped<IPersonalService, PersonalService>();
+
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IAddressService, AddressService>();
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+// Optional during development
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
