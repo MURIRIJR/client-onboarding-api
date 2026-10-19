@@ -170,7 +170,7 @@ namespace ClientOnboardingApi.Migrations
             modelBuilder.Entity("ClientOnboardingApi.Models.Onboarding", b =>
                 {
                     b.HasOne("ClientOnboardingApi.Models.Personal", "Personal")
-                        .WithMany()
+                        .WithMany("Onboardings")
                         .HasForeignKey("PersonalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -181,6 +181,8 @@ namespace ClientOnboardingApi.Migrations
             modelBuilder.Entity("ClientOnboardingApi.Models.Personal", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Onboardings");
                 });
 #pragma warning restore 612, 618
         }
