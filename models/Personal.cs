@@ -26,4 +26,7 @@ public class Personal
 
     public ICollection<Address> Addresses { get; set; }
         = new List<Address>();
+
+    public ICollection<Onboarding> Onboardings { get; set; }
+        = new List<Onboarding>();
 }
