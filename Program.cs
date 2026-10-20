@@ -2,6 +2,7 @@ using ClientOnboardingApi.Data;
 using ClientOnboardingApi.Interfaces;
 using ClientOnboardingApi.Repositories;
 using ClientOnboardingApi.Services;
+using ClientOnboardingApi.Mappings;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -33,6 +34,9 @@ builder.Services.AddScoped<IAddressService, AddressService>();
 // Onboarding
 builder.Services.AddScoped<IOnboardingRepository, OnboardingRepository>();
 builder.Services.AddScoped<IOnboardingService, OnboardingService>();
+
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
