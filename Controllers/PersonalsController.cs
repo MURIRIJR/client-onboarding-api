@@ -37,6 +37,11 @@ public class PersonalsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Personal>> Create(Personal personal)
     {
+        personal.DateOfBirth =
+            DateTime.SpecifyKind(
+                personal.DateOfBirth,
+                DateTimeKind.Utc);
+
         var created = await _service.CreateAsync(personal);
 
         return CreatedAtAction(
@@ -48,6 +53,11 @@ public class PersonalsController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Personal>> Update(int id, Personal personal)
     {
+        personal.DateOfBirth =
+            DateTime.SpecifyKind(
+                personal.DateOfBirth,
+                DateTimeKind.Utc);
+
         var updated = await _service.UpdateAsync(id, personal);
 
         if (updated == null)
